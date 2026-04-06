@@ -1,0 +1,12 @@
+# Dossiers de compilation
+build/
+build-*/
+
+# Fichiers de configuration utilisateur Qt Creator
+*.user
+*.user.*
+.qtcreator/
+
+# Fichiers systèmes temporaires
+.DS_Store
+Thumbs.db
