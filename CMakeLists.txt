@@ -4,19 +4,34 @@ project(MultiPlatformDemo VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Quick)
+find_package(Qt6 REQUIRED COMPONENTS Quick Bluetooth QuickControls2)
 
 qt_standard_project_setup(REQUIRES 6.10)
 
 qt_add_executable(appMultiPlatformDemo
-  main.cpp
+  src/main.cpp
+)
+
+target_include_directories(appMultiPlatformDemo PRIVATE
+  ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
 
 qt_add_qml_module(appMultiPlatformDemo
   URI MultiPlatformDemo
+  SOURCES
+    src/Connectivity/ble_connection.h
+    src/Connectivity/ble_connection.cpp
+    src/Connectivity/ble_controller.h
+    src/Connectivity/ble_controller.cpp
+    src/Connectivity/ble_device_model.h
+    src/Connectivity/ble_device_model.cpp
+    src/Connectivity/ble_scanner.h
+    src/Connectivity/ble_scanner.cpp
+
   QML_FILES
-    Main.qml
-    QML_FILES
+    src/UI/DeviceDetailView.qml
+    src/UI/DeviceListView.qml
+    src/UI/Main.qml
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
@@ -32,6 +47,8 @@ set_target_properties(appMultiPlatformDemo PROPERTIES
 
 target_link_libraries(appMultiPlatformDemo
   PRIVATE Qt6::Quick
+  PRIVATE Qt6::QuickControls2
+  PRIVATE Qt6::Bluetooth
 )
 
 install(TARGETS appMultiPlatformDemo
