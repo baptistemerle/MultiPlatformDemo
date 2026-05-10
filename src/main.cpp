@@ -3,6 +3,8 @@
 #include "Connectivity/ble_device_model.h"
 #include "Connectivity/ble_scanner.h"
 
+#include "Core/configuration.h"
+
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
@@ -15,6 +17,8 @@ int main(int argc, char *argv[])
   BLEScanner scanner;
   BLEDeviceModel deviceModel;
   BLEConnection connection;
+
+  scanner.setFilter(QBluetoothUuid(Configuration::targetDeviceUUID));
 
   QObject::connect(&scanner,     &BLEScanner::deviceDiscovered,
                    &deviceModel, &BLEDeviceModel::addDevice);

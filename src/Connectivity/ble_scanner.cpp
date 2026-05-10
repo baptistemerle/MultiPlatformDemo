@@ -7,7 +7,13 @@ BLEScanner::BLEScanner(QObject* parent)
   , m_discoveryAgent(new QBluetoothDeviceDiscoveryAgent(this))
 {
   connect(m_discoveryAgent, &QBluetoothDeviceDiscoveryAgent::deviceDiscovered,
-          this,             &BLEScanner::deviceDiscovered);
+          this,             [this](const QBluetoothDeviceInfo& info)
+          {
+            if (m_filter.isNull() || info.serviceUuids().contains(m_filter))
+            {
+              emit deviceDiscovered(info);
+            }
+          });
 
   connect(m_discoveryAgent, &QBluetoothDeviceDiscoveryAgent::finished,
           this,             &BLEScanner::scanFinished);
@@ -34,4 +40,14 @@ void BLEScanner::stopScan()
   {
     m_discoveryAgent->stop();
   }
+}
+
+void BLEScanner::setFilter(const QBluetoothUuid targetServiceUuid)
+{
+  m_filter = targetServiceUuid;
+}
+
+void BLEScanner::clearFilter()
+{
+  m_filter = QBluetoothUuid();
 }

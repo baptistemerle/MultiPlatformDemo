@@ -2,6 +2,7 @@
 #define BLE_SCANNER_H
 
 #include <QObject>
+#include <QBluetoothUuid>
 
 class QBluetoothDeviceDiscoveryAgent;
 class QBluetoothDeviceInfo;
@@ -16,6 +17,9 @@ public:
   void startScan();
   void stopScan();
 
+  void setFilter(const QBluetoothUuid targetServiceUuid);
+  void clearFilter();
+
 signals:
   void deviceDiscovered(const QBluetoothDeviceInfo& device);
   void scanFinished();
@@ -23,6 +27,7 @@ signals:
 
 private:
   QBluetoothDeviceDiscoveryAgent* m_discoveryAgent;
+  QBluetoothUuid m_filter;
 };
 
 #endif // BLE_SCANNER_H

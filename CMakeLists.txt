@@ -32,6 +32,7 @@ qt_add_qml_module(appMultiPlatformDemo
     src/UI/DeviceDetailView.qml
     src/UI/DeviceListView.qml
     src/UI/Main.qml
+    SOURCES src/Core/configuration.h
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
