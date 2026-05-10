@@ -4,6 +4,8 @@
 #include "ble_device_model.h"
 #include "ble_scanner.h"
 
+#include "Core/dashboard_protocol.h"
+
 BLEController::BLEController(BLEScanner* scanner, BLEDeviceModel* model, BLEConnection* connection, QObject* parent)
   : QObject(parent)
   , m_scanner(scanner)
@@ -56,11 +58,7 @@ void BLEController::disconnectFromDevice()
 
 void BLEController::sendLimit(int value)
 {
-  // TODO make this part clean
-  QString jsonPart = QString("{\"limit\":%1}").arg(value);
-  int jsonSize = jsonPart.toUtf8().size();
-  QString sizePrefix = QString("%1").arg(jsonSize, 4, 10, QChar('0'));
-  QString finalPayload = sizePrefix + jsonPart;
+  QByteArray payload = DashboardProtocol::encodeLimitMessage(value);
 
-  m_connection->sendConfiguration(finalPayload.toUtf8());
+  m_connection->sendConfiguration(payload);
 }

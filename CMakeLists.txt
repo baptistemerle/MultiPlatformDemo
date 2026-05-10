@@ -8,12 +8,21 @@ find_package(Qt6 REQUIRED COMPONENTS Quick Bluetooth QuickControls2)
 
 qt_standard_project_setup(REQUIRES 6.10)
 
+file(GLOB_RECURSE ESP32_UTILS_FILES
+    "lib/ESP32Utilities/*.h"
+    "lib/ESP32Utilities/*.hpp"
+    "lib/ESP32Utilities/*.cpp"
+    "lib/ESP32Utilities/*.c"
+)
+
 qt_add_executable(appMultiPlatformDemo
   src/main.cpp
+  ${ESP32_UTILS_FILES}
 )
 
 target_include_directories(appMultiPlatformDemo PRIVATE
   ${CMAKE_CURRENT_SOURCE_DIR}/src
+  ${CMAKE_CURRENT_SOURCE_DIR}/lib/ESP32Utilities/src
 )
 
 qt_add_qml_module(appMultiPlatformDemo
@@ -28,11 +37,14 @@ qt_add_qml_module(appMultiPlatformDemo
     src/Connectivity/ble_scanner.h
     src/Connectivity/ble_scanner.cpp
 
+    src/Core/configuration.h
+    src/Core/dashboard_protocol.h
+    src/Core/dashboard_protocol.cpp
+
   QML_FILES
     src/UI/DeviceDetailView.qml
     src/UI/DeviceListView.qml
     src/UI/Main.qml
-    SOURCES src/Core/configuration.h
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
