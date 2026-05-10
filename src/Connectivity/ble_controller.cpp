@@ -53,3 +53,14 @@ void BLEController::disconnectFromDevice()
 {
   m_connection->disconnectFromDevice();
 }
+
+void BLEController::sendLimit(int value)
+{
+  // TODO make this part clean
+  QString jsonPart = QString("{\"limit\":%1}").arg(value);
+  int jsonSize = jsonPart.toUtf8().size();
+  QString sizePrefix = QString("%1").arg(jsonSize, 4, 10, QChar('0'));
+  QString finalPayload = sizePrefix + jsonPart;
+
+  m_connection->sendConfiguration(finalPayload.toUtf8());
+}

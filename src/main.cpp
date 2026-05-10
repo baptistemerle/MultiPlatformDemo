@@ -16,9 +16,9 @@ int main(int argc, char *argv[])
 
   BLEScanner scanner;
   BLEDeviceModel deviceModel;
-  BLEConnection connection;
+  BLEConnection connection(Configuration::targetServiceUUID, Configuration::configurationDeviceUUID);
 
-  scanner.setFilter(QBluetoothUuid(Configuration::targetDeviceUUID));
+  scanner.setFilter(QBluetoothUuid(Configuration::targetServiceUUID));
 
   QObject::connect(&scanner,     &BLEScanner::deviceDiscovered,
                    &deviceModel, &BLEDeviceModel::addDevice);

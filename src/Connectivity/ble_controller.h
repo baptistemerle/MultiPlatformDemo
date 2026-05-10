@@ -24,6 +24,8 @@ public:
   Q_INVOKABLE void connectToDevice(int index);
   Q_INVOKABLE void disconnectFromDevice();
 
+  Q_INVOKABLE void sendLimit(int value);
+
 signals:
   void isScanningChanged();
 
