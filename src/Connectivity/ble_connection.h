@@ -26,6 +26,7 @@ signals:
   void connected();
   void disconnected();
   void errorOccurred(const QString& errorMsg);
+  void deviceReady();
 
 private:
   QLowEnergyController* m_controller = nullptr;

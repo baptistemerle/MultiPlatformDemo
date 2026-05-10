@@ -45,8 +45,18 @@ void BLEConnection::connectToDevice(const QBluetoothDeviceInfo& deviceInfo)
         if (state == QLowEnergyService::RemoteServiceDiscovered)
         {
           m_configurationCharacteristic = m_service->characteristic(m_configurationUuid);
+
+          if (m_configurationCharacteristic.isValid())
+          {
+            emit deviceReady();
+          }
+          else
+          {
+            emit errorOccurred("Configuration characteristic not found");
+          }
         }
       });
+
       m_service->discoverDetails();
     }
   });
