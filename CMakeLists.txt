@@ -39,6 +39,8 @@ qt_add_qml_module(appMultiPlatformDemo
     src/Connectivity/ble_scanner.h
     src/Connectivity/ble_scanner.cpp
 
+    src/Core/alert_controller.h
+    src/Core/alert_controller.cpp
     src/Core/configuration.h
     src/Core/dashboard_protocol.h
     src/Core/dashboard_protocol.cpp
