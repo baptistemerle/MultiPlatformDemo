@@ -30,10 +30,12 @@ qt_add_qml_module(appMultiPlatformDemo
   SOURCES
     src/Connectivity/ble_connection.h
     src/Connectivity/ble_connection.cpp
-    src/Connectivity/ble_controller.h
-    src/Connectivity/ble_controller.cpp
+    src/Connectivity/ble_device_controller.h
+    src/Connectivity/ble_device_controller.cpp
     src/Connectivity/ble_device_model.h
     src/Connectivity/ble_device_model.cpp
+    src/Connectivity/ble_discovery_controller.h
+    src/Connectivity/ble_discovery_controller.cpp
     src/Connectivity/ble_scanner.h
     src/Connectivity/ble_scanner.cpp
 

@@ -12,16 +12,16 @@ Item {
 
     Button {
       Layout.fillWidth: true
-      text: bleController.isScanning ? "Stop scan" : "Start scan"
+      text: discoveryController.isScanning ? "Stop scan" : "Start scan"
 
       onClicked: {
-        if (bleController.isScanning)
+        if (discoveryController.isScanning)
         {
-          bleController.stopScan()
+          discoveryController.stopScan()
         }
         else
         {
-          bleController.startScan()
+          discoveryController.startScan()
         }
       }
     }

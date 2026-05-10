@@ -18,8 +18,8 @@ Window {
 
     DeviceListView {
       onDeviceSelected: (index, name) => {
-        bleController.stopScan()
-        bleController.connectToDevice(index)
+        discoveryController.stopScan()
+        deviceController.connectToDevice(index)
         stackView.push(deviceDetailPage, { "selectedDeviceName": name })
       }
     }
@@ -30,7 +30,7 @@ Window {
 
     DeviceDetailView {
       onBackPressed: {
-        bleController.disconnectFromDevice()
+        deviceController.disconnectFromDevice()
         stackView.pop()
       }
     }

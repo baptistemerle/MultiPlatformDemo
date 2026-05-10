@@ -34,7 +34,7 @@ Item {
       Layout.alignment: Qt.AlignHCenter
 
       onClicked: {
-        bleController.sendLimit(limitSlider.value)
+        deviceController.sendLimit(limitSlider.value)
       }
     }
 
