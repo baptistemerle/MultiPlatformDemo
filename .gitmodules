@@ -1,3 +1,3 @@
-[submodule "lib/ESP32Utilities"]
-	path = lib/ESP32Utilities
-	url = https://github.com/baptistemerle/ESP32Utilities
+[submodule "lib/SharedProtocols"]
+	path = lib/SharedProtocols
+	url = https://github.com/baptistemerle/SharedProtocols

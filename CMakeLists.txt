@@ -8,21 +8,21 @@ find_package(Qt6 REQUIRED COMPONENTS Quick Bluetooth QuickControls2)
 
 qt_standard_project_setup(REQUIRES 6.10)
 
-file(GLOB_RECURSE ESP32_UTILS_FILES
-    "lib/ESP32Utilities/*.h"
-    "lib/ESP32Utilities/*.hpp"
-    "lib/ESP32Utilities/*.cpp"
-    "lib/ESP32Utilities/*.c"
+file(GLOB_RECURSE SHARED_PROTOCOLS_FILES
+    "lib/SharedProtocols/*.h"
+    "lib/SharedProtocols/*.hpp"
+    "lib/SharedProtocols/*.cpp"
+    "lib/SharedProtocols/*.c"
 )
 
 qt_add_executable(appMultiPlatformDemo
   src/main.cpp
-  ${ESP32_UTILS_FILES}
+  ${SHARED_PROTOCOLS_FILES}
 )
 
 target_include_directories(appMultiPlatformDemo PRIVATE
   ${CMAKE_CURRENT_SOURCE_DIR}/src
-  ${CMAKE_CURRENT_SOURCE_DIR}/lib/ESP32Utilities/src
+  ${CMAKE_CURRENT_SOURCE_DIR}/lib/SharedProtocols/src
 )
 
 qt_add_qml_module(appMultiPlatformDemo
