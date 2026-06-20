@@ -1,6 +1,6 @@
 #include "dashboard_protocol.h"
 
-#include <Protocols/length_payload_formatter.h>
+#include <Protocols/length_payload_formatter.hpp>
 
 #include <QString>
 

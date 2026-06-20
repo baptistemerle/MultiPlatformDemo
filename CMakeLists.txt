@@ -8,21 +8,14 @@ find_package(Qt6 REQUIRED COMPONENTS Quick Bluetooth QuickControls2)
 
 qt_standard_project_setup(REQUIRES 6.10)
 
-file(GLOB_RECURSE SHARED_PROTOCOLS_FILES
-    "lib/SharedProtocols/*.h"
-    "lib/SharedProtocols/*.hpp"
-    "lib/SharedProtocols/*.cpp"
-    "lib/SharedProtocols/*.c"
-)
+add_subdirectory(lib/SharedProtocols)
 
 qt_add_executable(appMultiPlatformDemo
   src/main.cpp
-  ${SHARED_PROTOCOLS_FILES}
 )
 
 target_include_directories(appMultiPlatformDemo PRIVATE
   ${CMAKE_CURRENT_SOURCE_DIR}/src
-  ${CMAKE_CURRENT_SOURCE_DIR}/lib/SharedProtocols/src
 )
 
 qt_add_qml_module(appMultiPlatformDemo
@@ -66,6 +59,7 @@ target_link_libraries(appMultiPlatformDemo
   PRIVATE Qt6::Quick
   PRIVATE Qt6::QuickControls2
   PRIVATE Qt6::Bluetooth
+  PRIVATE SharedProtocols
 )
 
 install(TARGETS appMultiPlatformDemo
